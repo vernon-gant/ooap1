@@ -158,3 +158,8 @@ public abstract class LinkedList<T>
     
     
 }
+
+/*
+ * 2.2 - because we can not efficiently come to tail rather than not storing another pointer to it internally. All other variants O(n)
+ * 2.3 - now we have find() and using it we can build a list if we want
+ */
