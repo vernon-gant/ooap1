@@ -63,84 +63,9 @@ public abstract class BoundedStack<T>
     public abstract int PeekStatus { get; }
 }
 
-public class ListBoundStack<T> : BoundedStack<T>
-{
-    // Hidden fields
-    private List<T> _stack;
-    private int _pushStatus;
-    private int _popStatus;
-    private int _peekStatus;
-    private readonly int _maxCapacity = DEFAULT_MAX_CAPACITY;
+// Take away after analysis
 
-    public ListBoundStack()
-    {
-        _stack = new List<T>(DEFAULT_MAX_CAPACITY);
-    }
-
-    public ListBoundStack(int maxCapacity) : base(maxCapacity)
-    {
-        _stack = new List<T>(maxCapacity);
-        _maxCapacity = maxCapacity;
-    }
-
-    public override void Push(T value)
-    {
-        if (Size == _maxCapacity)
-        {
-            _pushStatus = PUSH_ERR;
-            return;
-        }
-
-        _stack.Add(value);
-        _pushStatus = PUSH_OK;
-    }
-
-    public override void Pop()
-    {
-        if (Size == 0)
-        {
-            _popStatus = POP_ERR;
-            return;
-        }
-
-        _stack.RemoveAt(Size - 1);
-        _popStatus = POP_OK;
-    }
-
-    public override void Clear()
-    {
-        _stack = [];
-
-        _pushStatus = PUSH_NIL;
-        _popStatus = POP_NIL;
-        _peekStatus = PEEK_NIL;
-    }
-
-    public override T? Peek
-    {
-        get
-        {
-            T? result;
-            if (Size == 0)
-            {
-                _peekStatus = PEEK_ERR;
-                result = default;
-            }
-            else
-            {
-                _peekStatus = PEEK_OK;
-                result = _stack.Last();
-            }
-
-            return result;
-        }
-    }
-
-    public override int Size => _stack.Count;
-
-    public override int PushStatus => _pushStatus;
-
-    public override int PopStatus => _popStatus;
-
-    public override int PeekStatus => _peekStatus;
-}
+/*
+ * Code result PUSH_NIL was redundant on my side. Probably we do not need at all.
+ * Also had to add what special status codes return queries like PEEK_*
+ */
