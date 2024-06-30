@@ -62,10 +62,3 @@ public abstract class BoundedStack<T>
 
     public abstract int PeekStatus { get; }
 }
-
-// Take away after analysis
-
-/*
- * Code result PUSH_NIL was redundant on my side. Probably we do not need at all.
- * Also had to add what special status codes return queries like PEEK_*
- */
