@@ -1,5 +1,3 @@
-namespace TP.Service.Tour;
-
 public abstract class Queue<T>
 {
     // Status codes
