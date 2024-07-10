@@ -91,6 +91,11 @@ public class Deque<T> : QueueBase<T>
     public const int PEEK_BACK_OK = 0;
     public const int PEEK_BACK_EMPTY_QUEUE = 1;
     public const int PEEK_BACK_NOT_CALLED_YET = 2;
+    
+    // Constructors
+    
+    // post condition: new empty Deque is created
+    public Deque() {}
 
     // Hidden fields
 
